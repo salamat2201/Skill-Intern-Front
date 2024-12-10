@@ -1,0 +1,245 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  margin: 10px 80px;
+  border-bottom: 1px solid black;
+  padding-bottom: 10px;
+}
+
+.navbar-logo {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-right: auto;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-link {
+  text-decoration: none;
+  color: #3D3D3D;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.navbar-link:hover {
+  border-bottom: 2px solid #5cb85c;
+}
+
+.navbar-link.active {
+  border-bottom: 2px solid #5cb85c;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: auto;
+}
+
+.search-icon, .theme-icon {
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.login-button {
+  padding: 5px 15px;
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.profile-container {
+  position: relative;
+  cursor: pointer;
+}
+  
+  .profile-icon {
+    display: flex;
+    align-items: center;
+  }
+  
+  .avatar-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+  }
+  
+  .profile-menu {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: #1e1e1e;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    min-width: 100%;
+  }
+  
+  .profile-menu p {
+    margin: 0 0 10px;
+  }
+  
+  .logout-button {
+    background: #d9534f;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .logout-button:hover {
+    background: #c9302c;
+  }
+  
+  .add-vacancy-button {
+    position: fixed;
+    top: 60px;
+    right: 20px;
+    background-color: #4caf8e; /* Цвет кнопки */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-vacancy-button:hover {
+    background-color: #3a8a6f; /* Цвет кнопки при наведении */
+  }
+  
+  .profile-menu {
+    background-color: #333;  /* Dark background for the dropdown */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    position: absolute;
+    right: 20px; /* Adjust based on your layout */
+    top: 50px;  /* Adjust based on your layout */
+  }
+  
+  .company-field {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .company-input, .company-name {
+    flex: 1;
+    padding: 8px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    color: #333;
+    background-color: white;
+  }
+  
+  .navbar-button {
+    padding: 8px 15px;
+    margin-left: 10px;
+    font-weight: bold;
+    color: white;
+    background-color: #4CAF50; /* Green */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  }
+
+  .navbar-linkk {
+    color: #fff;
+  }
+  
+  .navbar-button:hover {
+    background-color: #45a049; /* Darker green */
+  }
+  
+  .logout-button {
+    background-color: #f44336; /* Red */
+  }
+  
+  .logout-button:hover {
+    background-color: #e53935; /* Darker red */
+  }
+
+/* Profile menu styling */
+.profile-menu {
+  background-color: #34495E; /* Slightly lighter slate for the dropdown */
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+  position: absolute;
+  right: 20px;
+  top: 60px; /* Adjust based on your actual navbar height */
+  width: 200px; /* Fixed width */
+}
+
+/* Company field and buttons styling */
+.company-field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  background-color: #ECF0F1; /* Light background for input area */
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.company-input, .company-name {
+  flex: 1;
+  border: none;
+  background: none;
+  color: #333; /* Dark text for readability */
+  margin-right: 10px;
+}
+
+.navbar-button {
+  padding: 5px 10px;
+  border: none;
+  color: white;
+  background-color: #18BC9C; /* Stylish green for buttons */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-button:hover {
+  background-color: #16A085; /* Darker shade on hover */
+}
+
+.logout-button {
+  background-color: #E74C3C; /* Red for logout to indicate a different action */
+}
+
+.logout-button:hover {
+  background-color: #C0392B; /* Darker red on hover */
+}
+
+/* Add some styling for links within the profile menu */
+.profile-menu .navbar-linkk {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 5px 0;
+  transition: background-color 0.3s ease;
+}
+
+.profile-menu .navbar-linkk:hover {
+  background-color: #2C3E50; /* Slightly darker background on hover */
+}
+
+/* General adjustments */
+.navbar-link, .profile-icon, .search-icon, .theme-icon {
+  margin-right: 10px;
+  cursor: pointer;
+}

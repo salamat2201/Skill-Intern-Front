@@ -1,0 +1,26 @@
+.response-card {
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding: 10px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.response-card.rejected {
+    background-color: #ffe0e0; /* светло-красный фон, выделяет отклоненный отклик */
+    border-color: #ff0000; /* красная рамка */
+}
+
+.response-card.accepted {
+    background-color: #e8ffe0; /* светло-красный фон, выделяет отклоненный отклик */
+    border-color: #11ff00; /* красная рамка */
+}
+
+.response-card.rejected button {
+    opacity: 0.5; /* визуально показываем, что кнопки неактивны */
+    cursor: not-allowed; /* меняем курсор при наведении */
+}
+
+.response-card.accepted button {
+    opacity: 0.5; /* визуально показываем, что кнопки неактивны */
+    cursor: not-allowed; /* меняем курсор при наведении */
+}

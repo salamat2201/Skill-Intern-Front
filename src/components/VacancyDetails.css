@@ -1,0 +1,107 @@
+.vacancy-details-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+.back-buttonn {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #fff;
+  padding: 15px;
+  border-radius: 15px;
+  text-decoration: none;
+  font-weight: bold;
+  max-width: 100%;
+  background-color: #333;
+}
+
+.vacancy-header {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.vacancy-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.vacancy-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.company-name {
+  font-size: 18px;
+  color: #555;
+}
+
+.employment-type {
+  font-size: 16px;
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  color: #333;
+}
+
+.respondClick {
+  background-color: green;
+}
+
+.vacancy-location {
+  font-size: 16px;
+  color: #777;
+}
+
+.vacancy-details {
+  margin-top: 20px;
+}
+
+.vacancy-details p {
+  margin: 10px 0;
+  font-size: 16px;
+  color: #444;
+}
+
+.vacancy-details a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.vacancy-details a:hover {
+  text-decoration: underline;
+}
+
+.vacancy-description {
+  margin-top: 15px;
+  line-height: 1.6;
+}
+
+h3 {
+  margin-top: 20px;
+  font-size: 20px;
+  color: #333;
+}
+
+button {
+  background-color: greenyellow;
+  color: #FFF;
+  font-weight: 800;
+  padding: 5px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  transform: scale(1.05);
+  background-color: green;
+}

@@ -1,0 +1,125 @@
+.vacancies-section {
+    display: flex;
+    padding: 20px;
+    gap: 40px;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+/* Фильтр панель */
+.filter-panel {
+    width: 300px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.filter-text {
+    font-weight: 700;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.filter-group {
+    margin-bottom: 20px;
+}
+
+.filter-group p {
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.filter-group label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+    padding: 5px;
+    border-radius: 8px;
+}
+
+.filter-group label:hover {
+    background-color: #f0f0f0;
+}
+
+.filter-group input[type="radio"],
+.filter-group input[type="checkbox"] {
+    margin-right: 10px;
+    accent-color: #007bff;
+}
+
+.filter-group select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fafafa;
+    transition: border-color 0.3s;
+}
+
+.filter-group select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.filter-panel button {
+    padding: 10px 15px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #007bff;
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.filter-panel button:hover {
+    background-color: #0056b3;
+}
+
+.filter-panel button.reset-button {
+    background-color: #6c757d;
+}
+
+.filter-panel button.reset-button:hover {
+    background-color: #5a6268;
+}
+
+.vacancies-list {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    height: 100%;
+}
+
+.vacancy-item {
+    background-color: #e8e8e8;
+    padding: 15px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+@media (max-width: 600px) {
+    .filter-panel {
+        padding: 15px;
+    }
+
+    .filter-text {
+        font-size: 20px;
+    }
+
+    .preview-button {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+}
