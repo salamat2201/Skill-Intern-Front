@@ -10,6 +10,12 @@
   font-weight: bold;
   font-size: 1.2em;
   margin-right: auto;
+  text-decoration: none;
+  color: #1e1e1e;
+}
+
+.navbar-logo Link {
+  color: #1e1e1e;
 }
 
 .navbar-links {
@@ -242,4 +248,58 @@
 .navbar-link, .profile-icon, .search-icon, .theme-icon {
   margin-right: 10px;
   cursor: pointer;
+}
+
+.search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.search-input {
+  position: absolute;
+  right: 330px;
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  border-radius: 4px;
+  width: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.searchh {
+  position: absolute;
+  right: 230px;
+  max-width: 100px;
+  top: -11.5px;
+}
+
+.search-container {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+/* Ключевые кадры для анимации появления */
+@keyframes slideIn {
+  0% {
+    width: 0;
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    width: 200px;
+    opacity: 1;
+    visibility: visible;
+  }
 }

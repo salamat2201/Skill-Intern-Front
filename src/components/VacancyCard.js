@@ -7,14 +7,9 @@ function VacancyCard({ id, title, location, salaryStart, salaryEnd, experience, 
   return (
     <div className="vacancy-card">
       <div className="vacancy-card-header">
-        <img
-          src="/placeholder-logo.png"
-          alt={`${companyName} logo`}
-          className="company-logo"
-        />
         <div>
           <h3 className="vacancy-title">{title}</h3>
-          <p className="company-name"><FaBuilding /> {companyName}</p>
+          <p className="company-name"><FaBuilding />&nbsp; {companyName}</p>
         </div>
       </div>
       <div className="vacancy-card-body">

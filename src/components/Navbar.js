@@ -17,6 +17,24 @@ function Navbar({ onLoginClick, isAuthenticated, onLogout }) {
   const [uploading, setUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const menuRef = useRef(null);
+  const token = localStorage.getItem('token');
+  const [isOpen, setIsOpen] = useState(false); // состояние для управления видимостью
+  const [searchText, setSearchText] = useState('');
+
+  const toggleSearch = () => {
+    setIsOpen(!isOpen); // переключение состояния видимости
+    navigate(`/vacancies`)
+  };
+
+  const handleSearch = () => {
+    if (searchText.trim() === '') {
+      alert('Пожалуйста, введите текст для поиска.');
+      return;
+    }
+    // Navigate to the Vacancies page with the searchText as a query parameter
+    navigate(`/vacancies?searchText=${encodeURIComponent(searchText)}`);
+    setIsOpen(true); // Optionally close the search input after searching
+  };
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -115,9 +133,10 @@ function Navbar({ onLoginClick, isAuthenticated, onLogout }) {
 
     try {
       setUploading(true);
-      const response = await axios.post('http://localhost:5000/add-resume', formData, {
+      const response = await axios.post(`${api}/api/profile/add-resume`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`,
         },
         onUploadProgress: (progressEvent) => {
           const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
@@ -153,8 +172,21 @@ function Navbar({ onLoginClick, isAuthenticated, onLogout }) {
       )}
       
       <div className="navbar-right">
-        <i className="search-icon">&#128269;</i>
-        <i className="theme-icon">&#9728;</i>
+        {isOpen && (
+          <div className="search-container">
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Search..."
+              autoFocus
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+              style={{ animation: "slideIn 2.5s forwards" }} // CSS анимация
+            />
+            <button className='search-input searchh' style={{ animation: "slideIn 2.5s forwards" }} onClick={handleSearch}>Search</button>
+          </div>
+        )}
+        <i className="search-icon" onClick={toggleSearch}>🔍</i>
         {isAuthenticated ? (
           <div className="profile-container" ref={menuRef}>
             <div className="profile-icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -197,6 +229,7 @@ function Navbar({ onLoginClick, isAuthenticated, onLogout }) {
                       </>
                     )}
                   </div>
+                  
                 )}
           {role === 'ROLE_USER' && (
             <div className="resume-section">

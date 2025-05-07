@@ -7,11 +7,6 @@ function InternCard({ id, title, location, salaryStart, salaryEnd, experience, c
   return (
     <div className="vacancy-card">
       <div className="vacancy-card-header">
-        <img
-          src="/placeholder-logo.png"
-          alt={`${companyName} logo`}
-          className="company-logo"
-        />
         <div>
           <h3 className="vacancy-title">{title}</h3>
           <p className="company-name"><FaBuilding /> {companyName}</p>

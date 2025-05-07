@@ -4,6 +4,7 @@ import VacancyCard from '../components/VacancyCard';
 import './Vacancies.css';
 import { api } from '../api/api';
 import qs from 'qs';
+import { useLocation } from 'react-router-dom';
 
 function Vacancies() {
   const [vacancies, setVacancies] = useState([]);
@@ -17,19 +18,46 @@ function Vacancies() {
   const [remoteWork, setRemoteWork] = useState(false);
   const [companyNames, setCompanyNames] = useState([]);
 
+  const location = useLocation();
+
   useEffect(() => {
-    fetchAllVacancies(); 
     fetchAllCompanyNames();
-  }, []);
+
+    const params = new URLSearchParams(location.search);
+    const searchText = params.get('searchText');
+
+    if (searchText) {
+      fetchSearchVacancies(searchText);
+    } else {
+      fetchAllVacancies();
+    }
+  }, [location.search]);
 
   const fetchAllVacancies = async () => {
     setLoading(true);
+    setError(null);
     try {
       const response = await axios.get(`${api}/api/vacancy/all`);
       setVacancies(response.data);
-      setLoading(false);
     } catch (err) {
-      setError(err.message);
+      setError(err.message || 'Ошибка при загрузке вакансий.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchSearchVacancies = async (searchText) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await axios.get(`${api}/api/vacancy/search`, {
+        params: { searchText },
+        paramsSerializer: params => qs.stringify(params),
+      });
+      setVacancies(response.data);
+    } catch (err) {
+      setError(err.message || 'Ошибка при поиске вакансий.');
+    } finally {
       setLoading(false);
     }
   };
@@ -38,9 +66,9 @@ function Vacancies() {
     try {
       const response = await axios.get(`${api}/api/vacancy/companies`);
       setCompanyNames(response.data);
-      console.log(companyNames)
+      console.log(response.data);
     } catch (err) {
-      setError(err.message)
+      setError(err.message || 'Ошибка при загрузке названий компаний.');
     }
   }
 
@@ -52,7 +80,6 @@ function Vacancies() {
     setTechnology(null);
     fetchAllVacancies();
   }
-
 
   const fetchFilteredVacancies = async () => {
     setLoading(true);
@@ -71,22 +98,19 @@ function Vacancies() {
       const response = await axios.get(`${api}/api/vacancy/by-filter`, {
         params,
         paramsSerializer: (params) => {
-        return qs.stringify(params, { arrayFormat: 'repeat' });
-      },
+          return qs.stringify(params, { arrayFormat: 'repeat' });
+        },
       });
       console.log(response.data)
   
       setVacancies(response.data);
-      console.log(vacancies)
       setLoading(false);
     } catch (err) {
-      setError(err.message);
+      setError(err.message || 'Ошибка при фильтрации вакансий.');
       setLoading(false);
     }
   };
   
-  
-
   const handleFilterApply = () => {
     fetchFilteredVacancies();
   };
@@ -114,11 +138,12 @@ function Vacancies() {
             </div>
         </div>
         <div className="filter-group">
-          <label htmlFor="company">Technology:</label>
-          <select id="technology" name="technology" value={technology} onChange={e => setTechnology(e.target.value)}>
+          <label htmlFor="technology">Technology:</label>
+          <select id="technology" name="technology" value={technology || ''} onChange={e => setTechnology(e.target.value)}>
             <option value="">Choose a technology</option>
-            <option value="Company1">technology1</option>
-            <option value="Company2">technology2</option>
+            <option value="technology1">technology1</option>
+            <option value="technology2">technology2</option>
+            {/* Replace with dynamic technologies if available */}
           </select>
         </div>
         <div className="filter-group">
@@ -126,7 +151,7 @@ function Vacancies() {
           <select 
             id="company" 
             name="company" 
-            value={company} 
+            value={company || ''} 
             onChange={e => setCompany(e.target.value)}
           >
             <option value="">Выберите компанию</option>
@@ -155,18 +180,22 @@ function Vacancies() {
       </div>
 
       <div className="vacancies-list">
-        {vacancies.map((vacancy) => (
-          <VacancyCard
-            key={vacancy.id}
-            id={vacancy.id}
-            title={vacancy.title}
-            location={vacancy.location}
-            salaryStart={vacancy.salaryStart}
-            salaryEnd={vacancy.salaryEnd}
-            experience={vacancy.experience}
-            companyName={vacancy.companyName}
-          />
-        ))}
+        {vacancies.length > 0 ? (
+          vacancies.map((vacancy) => (
+            <VacancyCard
+              key={vacancy.id}
+              id={vacancy.id}
+              title={vacancy.title}
+              location={vacancy.location}
+              salaryStart={vacancy.salaryStart}
+              salaryEnd={vacancy.salaryEnd}
+              experience={vacancy.experience}
+              companyName={vacancy.companyName}
+            />
+          ))
+        ) : (
+          <p>Нет вакансий, соответствующих вашему запросу.</p>
+        )}
       </div>
     </section>
   );

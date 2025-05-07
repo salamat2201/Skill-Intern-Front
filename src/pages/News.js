@@ -5,7 +5,8 @@ import './News.css'; // Подключаем стили
 
 function News() {
   const [role, setRole] = useState(null);
-  const [newsData, setNewsData] = useState({ title: '', description: '', image: '' });
+  const [newsData, setNewsData] = useState({ title: '', description: '' });
+  const [imageFile, setImageFile] = useState(null);
   const [allNews, setAllNews] = useState([]); // Состояние для всех новостей
   const token = localStorage.getItem('token');
 
@@ -23,11 +24,12 @@ function News() {
     // Получение всех новостей
     const fetchAllNews = async () => {
       try {
-        const response = await axios.get(`${api}/api/admin/allNews`, {
+        const response = await axios.get(`${api}/api/news/all`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
+        console.log(response.data)
         setAllNews(response.data); // Сохранение новостей в состояние
       } catch (error) {
         console.error('Error fetching news:', error);
@@ -42,32 +44,31 @@ function News() {
     setNewsData({ ...newsData, [name]: value });
   };
 
-  const handleSubmit = async () => {
-    if (!newsData.title || !newsData.description || !newsData.image) {
+  const handleFileChange = (e) => {
+    setImageFile(e.target.files[0]); // Сохранение файла в state
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!newsData.title || !newsData.description || !imageFile) {
       alert('All fields are required!');
       return;
     }
 
+    const formData = new FormData();
+    formData.append('title', newsData.title);
+    formData.append('description', newsData.description);
+    formData.append('image', imageFile); // Добавление файла в FormData
+
     try {
-      const response = await axios.post(
-        `${api}/api/admin/addNews`,
-        {
-          title: newsData.title,
-          description: newsData.description,
-          image: newsData.image,
+      const response = await axios.post(`${api}/api/admin/addNews`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',  // Указываем тип контента
+          Authorization: `Bearer ${token}`,// Указываем тип контента
         },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
-        }
-      );
+      });
       alert('News added successfully!');
-      console.log(response.data);
-      setNewsData({ title: '', description: '', image: '' });
-      document.getElementById('newsModal').style.display = 'none';
-      setAllNews((prev) => [...prev, response.data]); // Добавление новой новости в список
+      console.log(response);
     } catch (error) {
       console.error('Error adding news:', error);
       alert('Failed to add news.');
@@ -91,7 +92,7 @@ function News() {
 
           {/* Модальное окно для добавления новости */}
           <div id="newsModal" className="modal" style={{ display: 'none' }}>
-            <div className="modal-content">
+            <div className="modal-contents">
               <span
                 className="close"
                 onClick={() => {
@@ -102,26 +103,38 @@ function News() {
                 &times;
               </span>
               <h2>Add News</h2>
-              <input
-                type="text"
-                name="title"
-                placeholder="Title"
-                value={newsData.title}
-                onChange={handleInputChange}
-              />
-              <textarea
-                name="description"
-                placeholder="Description"
-                value={newsData.description}
-                onChange={handleInputChange}
-              />
-              <input
-                type="text"
-                name="image"
-                placeholder="Image URL"
-                value={newsData.image}
-                onChange={handleInputChange}
-              />
+              <div>
+                <label htmlFor="title">Title:</label>
+                <input
+                  type="text"
+                  id="title"
+                  name="title"
+                  value={newsData.title}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="description">Description:</label>
+                <textarea
+                  id="description"
+                  name="description"
+                  value={newsData.description}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="image">Image:</label>
+                <input
+                  type="file"
+                  id="image"
+                  name="image"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                  required
+                />
+              </div>
               <button onClick={handleSubmit}>Submit</button>
             </div>
           </div>
@@ -133,10 +146,12 @@ function News() {
         <h2>All News</h2>
         {allNews.length > 0 ? (
           allNews.map((news, index) => (
-            <div key={index} className="news-item">
-              <h3>{news.title}</h3>
-              <p>{news.description}</p>
-              {news.image && <img src={news.image} alt={news.title} />}
+            <div className="news-item">
+              <h3 className="news-title">{news.title}</h3>
+              <div className='newss'>
+                {news.imageUrl && <img className="news-image" src={news.imageUrl} alt={news.title} />}
+                <p className="news-description">{news.description}</p>
+              </div>
             </div>
           ))
         ) : (

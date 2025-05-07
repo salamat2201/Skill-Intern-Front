@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { FaBuilding, FaMapMarkerAlt, FaBriefcase } from 'react-icons/fa';
 
 function MyResponsesPage() {
-  const [vacancies, setVacancies] = useState([]);
+  const [vacanciess, setVacanciess] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -36,19 +36,17 @@ function MyResponsesPage() {
         throw new Error('Вы не авторизованы.');
       }
 
-      // В зависимости от выбранного статуса подставляем нужный URL
-      let url = `${api}/api/responses/my`;
-      if (statusEndpoint) {
-        url = `${api}/api/responses/my/${statusEndpoint}`;
-      }
-
-      const response = await axios.get(url, {
-        headers: { Authorization: `Bearer ${token}` },
+      const response = await axios.get(`${api}/api/responses/my/${statusEndpoint}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
-      setVacancies(response.data);
-      setLoading(false);
+
+      setVacanciess(response.data);
+      console.log()
     } catch (err) {
-      setError(err.message);
+      setError(err.message || 'Ошибка загрузки вакансий');
+    } finally {
       setLoading(false);
     }
   };
@@ -109,11 +107,11 @@ function MyResponsesPage() {
       {loading && <p className="my-vacancies-loading">Загрузка вакансий...</p>}
       {error && <p className="my-vacancies-error">Ошибка: {error}</p>}
 
-      {!loading && !error && vacancies.length === 0 ? (
+      {!loading && !error && vacanciess.length === 0 ? (
         <p className="no-vacancies-message">У вас нет откликов по выбранному фильтру.</p>
       ) : (
         <div className="vacancies-list">
-          {vacancies.map((vacancy) => (
+          {vacanciess.map((vacancy) => (
             <div className="vacancy-card" key={vacancy.id}>
               <div className="vacancy-card-header">
                 <img

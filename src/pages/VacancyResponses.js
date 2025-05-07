@@ -83,6 +83,7 @@ function VacancyResponses() {
             <p><strong>Почта:</strong> {res.email}</p>
             <p><strong>Имя пользователя:</strong> {res.username}</p>
             <p><strong>Текущий статус:</strong> {res.status}</p>
+            <a href={res.resume}><strong>Резюме пользователя</strong></a>
             <div style={{ display: 'flex', gap: '10px' }}>
               <button onClick={() => updateResponseStatus(res.id, 'ACCEPTED')}>
                 Принять
