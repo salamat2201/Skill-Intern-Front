@@ -1,45 +1,75 @@
 .success-popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+  backdrop-filter: blur(3px);
+}
+
+.success-popup-content {
+  background: white;
+  padding: 30px 40px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: popIn 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.checkmark {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 20px;
+}
+
+.checkmark-circle {
+  stroke: #2ecc71;
+  stroke-width: 3;
+  fill: none;
+  animation: fillCircle 1s ease-in-out forwards;
+}
+
+.checkmark-check {
+  stroke: #2ecc71;
+  stroke-width: 5;
+  stroke-linecap: round;
+  fill: none;
+}
+
+.success-message {
+  font-size: 20px;
+  color: #2ecc71;
+  margin-top: 15px;
+  font-weight: 600;
+  text-align: center;
+}
+
+@keyframes fillCircle {
+  from {
+    stroke-dasharray: 0 100;
   }
-  
-  .success-popup-content {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  to {
+    stroke-dasharray: 100 100;
   }
-  
-  .checkmark {
-    width: 52px;
-    height: 52px;
-    margin-bottom: 10px;
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
   }
-  
-  .checkmark-circle {
-    stroke: #4CAF50;
-    stroke-width: 5;
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
   }
-  
-  .checkmark-check {
-    stroke: #4CAF50;
-    stroke-width: 5;
+  100% {
+    transform: scale(1);
   }
-  
-  .success-message {
-    font-size: 18px;
-    color: #4CAF50;
-    margin-top: 10px;
-  }
-  
+}

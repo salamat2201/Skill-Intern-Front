@@ -1,180 +1,275 @@
-/* src/pages/Login.css */
-
+/* Модальное окно логина */
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-  }
-  
-  .modal-content {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    width: 400px;
-    position: relative;
-    text-align: center;
-  }
-  
-  .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-  }
-  
-  .login-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .login-title .active {
-    color: #4CAF50;
-  }
-  
-  .login-subtitle {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 20px;
-  }
-  
-  .login-input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .password-container {
-    position: relative;
-  }
-  .password-toggle {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .forgot-password {
-    display: block;
-    text-align: right;
-    font-size: 12px;
-    color: #4CAF50;
-    text-decoration: none;
-    margin-bottom: 20px;
-  }
-  
-  .login-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .divider {
-    display: flex;
-    align-items: center;
-    margin: 20px 0;
-    color: #aaa;
-  }
-  
-  .divider::before,
-  .divider::after {
-    content: "";
-    flex: 1;
-    border-bottom: 1px solid #ccc;
-    margin: 0 10px;
-  }
-  
-  .google-login-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .google-login-button img {
-    width: 20px;
-    margin-right: 10px;
-  }  
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+  backdrop-filter: blur(3px);
+  animation: fadeIn 0.3s ease;
+}
 
-  .employer-checkbox {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    color: #666;
-    margin: 10px 0;
-  }
-  
-  .employer-checkbox input {
-    margin-right: 8px;
-  }
+.modal-content {
+  background-color: #fff;
+  padding: 35px;
+  border-radius: 12px;
+  width: 420px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: modalSlideUp 0.4s ease;
+}
 
-  .forgot-password-link {
-    display: block;
-    margin-top: 10px;
-    text-align: center;
-    color: #4caf50;
-    cursor: pointer;
-    font-size: 14px;
-    text-decoration: underline;
-    background-color: #fff;
-  }
-  
-  .forgot-password-link:hover {
-    color: #388e3c;
-    transform: scale(1.1);
-    background-color: #fff;
-  }
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #95a5a6;
+  transition: all 0.3s ease;
+  padding: 0;
+  line-height: 1;
+}
 
-  .login-title:hover {
-    cursor: pointer;
-  }
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
+.close-button:hover {
+  color: #e74c3c;
+  transform: rotate(90deg);
+}
 
-  .back-button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    background-color: #757575;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+.login-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+
+.login-title .active {
+  color: #3498db;
+  padding-bottom: 5px;
+  border-bottom: 3px solid #3498db;
+}
+
+.login-title span {
+  margin: 0 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding-bottom: 5px;
+}
+
+.login-title span:hover:not(.active) {
+  color: #7f8c8d;
+}
+
+.login-subtitle {
+  font-size: 15px;
+  color: #7f8c8d;
+  margin-bottom: 25px;
+}
+
+.login-input {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 12px 0;
+  border: 1px solid #dfe4ea;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.login-input:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.password-container {
+  position: relative;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 16px;
+  color: #95a5a6;
+}
+
+.forgot-password {
+  display: block;
+  text-align: right;
+  font-size: 14px;
+  color: #3498db;
+  text-decoration: none;
+  margin: 15px 0 20px;
+  transition: all 0.3s ease;
+}
+
+.forgot-password:hover {
+  color: #2980b9;
+}
+
+.login-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 15px;
+  box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);
+}
+
+.login-button:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(52, 152, 219, 0.3);
+}
+
+.login-button:active {
+  transform: translateY(0);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 25px 0;
+  color: #95a5a6;
+  font-size: 14px;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #dfe4ea;
+  margin: 0 15px;
+}
+
+.google-login-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #fff;
+  border: 1px solid #dfe4ea;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  color: #34495e;
+}
+
+.google-login-button:hover {
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.google-login-button img {
+  width: 20px;
+  margin-right: 10px;
+}
+
+.employer-checkbox {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  color: #34495e;
+  margin: 15px 0;
+  justify-content: flex-start;
+}
+
+.employer-checkbox input {
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+  accent-color: #3498db;
+}
+
+.forgot-password-link {
+  display: block;
+  margin-top: 15px;
+  text-align: center;
+  color: #3498db;
+  cursor: pointer;
+  font-size: 15px;
+  text-decoration: none;
+  background-color: transparent;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.forgot-password-link:hover {
+  color: #2980b9;
+  text-decoration: underline;
+}
+
+.back-button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  background-color: #95a5a6;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+
+.back-button:hover {
+  background-color: #7f8c8d;
+  transform: translateY(-2px);
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: 5px;
+  text-align: left;
+}
+
+.success-message {
+  color: #2ecc71;
+  font-size: 14px;
+  margin-top: 5px;
+  text-align: left;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  
-  .back-button:hover {
-    background-color: #616161;
+  to {
+    opacity: 1;
   }
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

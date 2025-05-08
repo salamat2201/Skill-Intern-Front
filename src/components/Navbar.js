@@ -164,6 +164,7 @@ function Navbar({ onLoginClick, isAuthenticated, onLogout }) {
         <Link to="/vacancies" className={`navbar-link ${location.pathname === '/vacancies' ? 'active' : ''}`}>Vacancies</Link>
         <Link to="/internships" className={`navbar-link ${location.pathname === '/internships' ? 'active' : ''}`}>Internships</Link>
         <Link to="/about-us" className={`navbar-link ${location.pathname === '/about-us' ? 'active' : ''}`}>About Us</Link>
+        <a href="https://salamat2201-aiskillintern-app-mgrubj.streamlit.app/" className={`navbar-link active`}>AI prediction</a>
       </div>
       
       {/* Кнопка добавления вакансии только для работодателей */}

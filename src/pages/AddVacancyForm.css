@@ -1,52 +1,128 @@
 .vacancy-form {
-    max-width: 800px;
-    margin: 0 auto;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  border: none;
+  border-radius: 15px;
+  background-color: #ffffff;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.vacancy-form h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #2c3e50;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #f0f2f5;
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+  margin-bottom: 20px;
+}
+
+.vacancy-form label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  width: 100%;
+  font-weight: 600;
+  color: #34495e;
+  font-size: 15px;
+}
+
+.vacancy-form input,
+.vacancy-form select,
+.vacancy-form textarea {
+  padding: 12px 15px;
+  margin-top: 8px;
+  border: 1px solid #dfe4ea;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  background-color: #f8f9fa;
+  color: #34495e;
+}
+
+.vacancy-form input:focus,
+.vacancy-form select:focus,
+.vacancy-form textarea:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+  background-color: #ffffff;
+}
+
+.vacancy-form textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.vacancy-form select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2334495e' viewBox='0 0 16 16'%3E%3Cpath d='M8 10.5a.5.5 0 0 1-.354-.146l-4-4a.5.5 0 1 1 .708-.708L8 9.293l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.354.146z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  padding-right: 40px;
+}
+
+.vacancy-form button {
+  background-color: #3498db;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 30px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);
+}
+
+.vacancy-form button:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(52, 152, 219, 0.3);
+}
+
+.vacancy-form button:active {
+  transform: translateY(0);
+}
+
+/* Checkbox styling */
+.vacancy-form input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  accent-color: #3498db;
+}
+
+.vacancy-form label:has(input[type="checkbox"]) {
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .vacancy-form {
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-  }
-  
-  .vacancy-form h2 {
-    text-align: center;
-    margin-bottom: 20px;
+    margin: 20px;
   }
   
   .form-group {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-  }
-  
-  .vacancy-form label {
-    display: flex;
     flex-direction: column;
-    margin-bottom: 15px;
-    width: 100%;
-  }
-  
-  .vacancy-form input,
-  .vacancy-form select,
-  .vacancy-form textarea {
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
+    gap: 10px;
   }
   
   .vacancy-form button {
-    background-color: #4caf8e;
-    color: white;
-    font-size: 16px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
+    width: 100%;
   }
-  
-  .vacancy-form button:hover {
-    background-color: #3a8a6f;
-  }
-  
+}
